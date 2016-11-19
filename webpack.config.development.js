@@ -1,22 +1,21 @@
 /* eslint max-len: 0 */
 import webpack from 'webpack';
 import baseConfig from './webpack.config.base';
+import path from 'path';
 
 const config = {
   ...baseConfig,
-
-  debug: true,
 
   devtool: 'cheap-module-eval-source-map',
 
   entry: {
     background: [
       'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
-      './background/background',
+      baseConfig.entry.background,
     ],
     main: [
       'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
-      './main/main',
+      baseConfig.entry.main,
     ]
   },
 
@@ -27,28 +26,49 @@ const config = {
 
   module: {
     ...baseConfig.module,
-    loaders: [
-      ...baseConfig.module.loaders,
+    rules: [
+      ...baseConfig.module.rules,
 
       {
         test: /global\.css$/,
-        loaders: [
+        use: [
           'style-loader',
-          'css-loader?sourceMap'
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       },
 
       {
         test: /^((?!global).)*\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
         ]
       }
     ]
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
     ...baseConfig.plugins,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

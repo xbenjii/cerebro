@@ -8,11 +8,6 @@ const config = {
 
   devtool: 'source-map',
 
-  entry: {
-    main: './main/main',
-    background: './background/background'
-  },
-
   output: {
     ...baseConfig.output,
 
@@ -22,43 +17,54 @@ const config = {
   module: {
     ...baseConfig.module,
 
-    loaders: [
-      ...baseConfig.module.loaders,
+    rules: [
+      ...baseConfig.module.rules,
 
       {
         test: /global\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader'
-        )
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: "style-loader",
+          loader: "css-loader"
+        })
       },
-
       {
         test: /^((?!global).)*\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
-        )
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: "style-loader",
+          loader: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: true,
+                importLoaders: 1
+              }
+            },
+            'postcss-loader'
+          ]
+        })
       }
     ]
   },
 
   plugins: [
     ...baseConfig.plugins,
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         screw_ie8: true,
         warnings: false
       },
-      sourceMap: false
+      sourceMap: false,
+      minimize: true
     }),
-    new ExtractTextPlugin('style.css', { allChunks: true }),
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      allChunks: true
+    }),
     new OptimizeJsPlugin({
       sourceMap: false
     })
   ],
-
   target: 'electron-renderer'
 };
 

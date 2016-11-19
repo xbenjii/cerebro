@@ -4,34 +4,38 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
-      loaders: ['babel-loader'],
+      use: 'babel-loader',
       exclude: /node_modules/
     }, {
       test: /\.json$/,
-      loader: 'json-loader'
+      use: 'json-loader'
     }, {
       test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-      loader: 'url-loader'
+      use: 'url-loader'
     }]
+  },
+  entry: {
+    main: './main/main',
+    background: './background/background'
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
     libraryTarget: 'commonjs2'
   },
+  // tmp for loaders
+  resolveLoader: {
+    moduleExtensions: ["-loader"]
+  },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    root: [
+    extensions: ['.js', '.jsx'],
+    modules: [
       path.resolve('.'),
       path.resolve('./node_modules'),
     ]
   },
-  postcss: () => [
-    require('autoprefixer'),
-    require('postcss-nested'),
-  ],
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
