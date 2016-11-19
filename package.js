@@ -43,6 +43,7 @@ const DEFAULT_OPTS = {
     '^/main/(?!app.html)',
     '^/background/(?!index.html)',
     '^/.babelrc',
+    '^/postcss.config.js',
   ]
   .concat(devDeps.map(name => `/node_modules/${name}($|/)`))
   .concat(

@@ -1,5 +1,5 @@
-import 'babel-polyfill';
-import { jsdom } from 'jsdom';
+require('babel-polyfill');
+const jsdom = require('jsdom').jsdom;
 
 global.document = jsdom('<!doctype html><html><body></body></html>');
 global.window = document.defaultView;

@@ -30,17 +30,18 @@ const config = {
       {
         test: /^((?!global).)*\.css$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: "style-loader",
+          fallbackLoader: 'style-loader',
           loader: [
             {
               loader: 'css-loader',
               options: {
                 modules: true,
-                sourceMap: true,
                 importLoaders: 1
               }
             },
-            'postcss-loader'
+            {
+              loader: 'postcss-loader'
+            }
           ]
         })
       }
@@ -54,6 +55,7 @@ const config = {
         screw_ie8: true,
         warnings: false
       },
+      dead_code: true,
       sourceMap: false,
       minimize: true
     }),

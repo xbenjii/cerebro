@@ -1,37 +1,36 @@
 import webpack from 'webpack';
 import baseConfig from './webpack.config.base';
 
-
 const isProduction = process.env.NODE_ENV === 'production';
 
 const plugins = [
-  new webpack.optimize.UglifyJsPlugin({
-    sourceMap: !isProduction,
-    compressor: {
-      warnings: false
-    }
-  }),
   new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-    }
-  })
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  }),
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compressor: {
+  //     screw_ie8: true,
+  //     warnings: false
+  //   },
+  //   sourceMap: !isProduction,
+  //   minimize: true
+  // }),
 ];
 
 const externals = [
   ...baseConfig.externals,
 ];
 
-if (!isProduction) {
-  plugins.push(
-    new webpack.BannerPlugin(
-      'require("source-map-support").install();',
-      { raw: true, entryOnly: false }
-    )
-  );
+// if (!isProduction) {
+//   plugins.push(
+//     new webpack.BannerPlugin(
+//       'require("source-map-support").install();',
+//       { raw: true, entryOnly: false }
+//     )
+//   );
 
-  externals.push('source-map-support');
-}
+//   externals.push('source-map-support');
+// }
 
 export default {
   ...baseConfig,
