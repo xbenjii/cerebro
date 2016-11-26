@@ -1,7 +1,7 @@
-import { app, ipcMain, crashReporter } from 'electron';
+const { app, ipcMain, crashReporter } = require('electron');
 
-import createMainWindow from './main/createWindow';
-import createBackgroundWindow from './background/createWindow';
+const createMainWindow = require('./main/createWindow');
+const createBackgroundWindow = require('./background/createWindow');
 
 let mainWindow;
 let backgroundWindow;

@@ -1,12 +1,10 @@
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import baseConfig from './webpack.config.base';
-import OptimizeJsPlugin from 'optimize-js-plugin';
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const baseConfig = require('./webpack.config.base');
+const OptimizeJsPlugin = require('optimize-js-plugin');
 
 const config = {
   ...baseConfig,
-
-  devtool: 'source-map',
 
   output: {
     ...baseConfig.output,
@@ -70,4 +68,4 @@ const config = {
   target: 'electron-renderer'
 };
 
-export default config;
+module.exports = config;

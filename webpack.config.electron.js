@@ -1,5 +1,5 @@
-import webpack from 'webpack';
-import baseConfig from './webpack.config.base';
+const webpack = require('webpack');
+const baseConfig = require('./webpack.config.base');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -32,7 +32,7 @@ const externals = [
 //   externals.push('source-map-support');
 // }
 
-export default {
+module.exports = {
   ...baseConfig,
 
   plugins,
