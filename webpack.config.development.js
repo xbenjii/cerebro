@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import baseConfig from './webpack.config.base';
 import path from 'path';
 
-const config = {
+export default {
   ...baseConfig,
 
   devtool: 'cheap-module-eval-source-map',
@@ -28,22 +28,8 @@ const config = {
     ...baseConfig.module,
     rules: [
       ...baseConfig.module.rules,
-
       {
-        test: /global\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      },
-
-      {
-        test: /^((?!global).)*\.css$/,
+        test: /\.css$/,
         use: [
           {
             loader: 'style-loader',
@@ -76,5 +62,3 @@ const config = {
 
   target: 'electron-renderer'
 };
-
-export default config;
