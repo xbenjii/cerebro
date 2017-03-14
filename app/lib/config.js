@@ -21,7 +21,8 @@ const defaultSettings = memoize(() => {
     showInTray: true,
     firstStart: true,
     developerMode: false,
-    cleanOnHide: true
+    cleanOnHide: true,
+    external: {},
   }
 })
 
