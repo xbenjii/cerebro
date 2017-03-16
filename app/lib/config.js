@@ -22,7 +22,7 @@ const defaultSettings = memoize(() => {
     firstStart: true,
     developerMode: false,
     cleanOnHide: true,
-    external: {},
+    plugins: {},
   }
 })
 
