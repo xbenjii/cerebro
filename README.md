@@ -1,5 +1,7 @@
 # Cerebro
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/KELiON/cerebro.svg)](https://greenkeeper.io/)
+
 <img src="./build/icons/128x128.png" align="right"/>
 
 [![Build Status][travis-image]][travis-url]
