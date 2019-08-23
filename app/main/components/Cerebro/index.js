@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { clipboard, remote } from 'electron'
-import { focusableSelector } from 'cerebro-ui'
+import { focusableSelector } from '@devmedoo/cerebro-ui'
 import escapeStringRegexp from 'escape-string-regexp'
 
 import debounce from 'lodash/debounce'

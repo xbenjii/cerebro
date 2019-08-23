@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { KeyboardNavItem } from 'cerebro-ui'
+import { KeyboardNavItem } from '@devmedoo/cerebro-ui'
 
 const ActionButton = ({ action, onComplete, text }) => {
   const onSelect = () => {

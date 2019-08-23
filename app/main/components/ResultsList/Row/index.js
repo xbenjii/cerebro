@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { SmartIcon } from 'cerebro-ui'
+import { SmartIcon } from '@devmedoo/cerebro-ui'
 import styles from './styles.css'
 
 class Row extends Component {

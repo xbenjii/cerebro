@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Select, Text, Checkbox } from 'cerebro-ui/Form'
+import { Select, Text, Checkbox } from '@devmedoo/cerebro-ui/Form'
 
 const components = {
   bool: Checkbox,
