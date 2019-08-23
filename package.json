@@ -193,7 +193,7 @@
   "dependencies": {
     "auto-launch": "^5.0.1",
     "cerebro-tools": "0.1.8",
-    "cerebro-ui": "^0.0.16",
+    "cerebro-ui": "devmedoo/cerebro-ui",
     "electron-debug": "^3.0.1",
     "escape-string-regexp": "1.0.5",
     "fix-path": "2.1.0",
