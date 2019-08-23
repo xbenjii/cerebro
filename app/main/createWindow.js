@@ -15,6 +15,7 @@ import config from '../lib/config'
 import getWindowPosition from '../lib/getWindowPosition'
 import * as donateDialog from './createWindow/donateDialog'
 
+
 export default ({ src, isDev }) => {
   const [x, y] = getWindowPosition({})
 
@@ -27,7 +28,11 @@ export default ({ src, isDev }) => {
     frame: false,
     resizable: false,
     // Show main window on launch only when application started for the first time
-    show: config.get('firstStart')
+    show: config.get('firstStart'),
+    webPreferences: {
+      nodeIntegration: true,
+      webviewTag: true
+    }
   }
 
   if (process.platform === 'linux') {
@@ -35,6 +40,10 @@ export default ({ src, isDev }) => {
   }
 
   const mainWindow = new BrowserWindow(browserWindowOptions)
+  if (process.env.NODE_ENV === 'development' || config.get('developerMode')) {
+    mainWindow.webContents.openDevTools()
+  }
+
 
   // Float main window above full-screen apps
   mainWindow.setAlwaysOnTop(true, 'modal-panel')
@@ -142,16 +151,13 @@ export default ({ src, isDev }) => {
   app.on('activate', showMainWindow)
 
   // Someone tried to run a second instance, we should focus our window.
-  const shouldQuit = app.makeSingleInstance(() => {
+  app.requestSingleInstanceLock()
+  app.on('second-instance', (event, argv, cwd) => {
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore()
       mainWindow.focus()
     }
   })
-
-  if (shouldQuit) {
-    app.quit()
-  }
 
   if (donateDialog.shouldShow()) {
     setTimeout(donateDialog.show, 1000)
