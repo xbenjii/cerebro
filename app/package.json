@@ -2,16 +2,16 @@
   "name": "cerebro",
   "productName": "Cerebro",
   "description": "Extendable electron-based open-source Spotlight and Alfred analogue",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "./main.js",
   "license": "MIT",
   "author": {
-    "name": "Alexandr Subbotin",
-    "email": "kelionweb@gmail.com",
-    "url": "https://github.com/KELiON"
+    "name": "Mohamed Wageh",
+    "email": "dev.medoo@outlook.com",
+    "url": "https://github.com/devmedoo"
   },
   "scripts": {
-    "rebuild": "npm rebuild --runtime=electron --target=1.6.11 --disturl=https://atom.io/download/electron --abi=53"
+    "rebuild": "npm rebuild --runtime=electron --target=6.0.3 --disturl=https://atom.io/download/electron --abi=73"
   },
   "dependencies": {
     "chokidar": "^1.6.1",

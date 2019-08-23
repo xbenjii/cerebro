@@ -152,7 +152,7 @@ export default ({ src, isDev }) => {
 
   // Someone tried to run a second instance, we should focus our window.
   app.requestSingleInstanceLock()
-  app.on('second-instance', (event, argv, cwd) => {
+  app.on('second-instance', () => {
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore()
       mainWindow.focus()
