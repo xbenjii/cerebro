@@ -6,7 +6,7 @@ import { flow, filter, map, property } from 'lodash/fp'
 
 const DEFAULT_PLUGINS = [
   process.platform === 'darwin' ? 'cerebro-mac-apps' : 'cerebro-basic-apps',
-  'cerebro-google',
+  'cerebro-duck-duck-go',
   'cerebro-math',
   'cerebro-converter',
   'cerebro-open-web',
@@ -22,7 +22,7 @@ function checkForUpdates() {
     filter(property('isUpdateAvailable')),
     map(plugin => client.update(plugin.name))
   )).then(promises => Promise.all(promises).then(() => promises.length))
-    .then(updatedPlugins => {
+    .then((updatedPlugins) => {
       console.log(
         updatedPlugins > 0
           ? `${updatedPlugins} plugins are updated`
@@ -46,7 +46,7 @@ function migratePlugins(sendMessage) {
 
   console.log('Start installation of default plugins')
 
-  getInstalledPlugins().then(installedPlugins => {
+  getInstalledPlugins().then((installedPlugins) => {
     const promises = flow(
       filter(plugin => !installedPlugins[plugin]),
       map(plugin => client.install(plugin))

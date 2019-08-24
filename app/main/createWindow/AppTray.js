@@ -2,7 +2,6 @@ import { Menu, Tray, app } from 'electron'
 import showWindowWithTerm from './showWindowWithTerm'
 import toggleWindow from './toggleWindow'
 import checkForUpdates from './checkForUpdates'
-import { donate } from './donateDialog'
 
 /**
  * Class that controls state of icon in menu bar
@@ -56,11 +55,6 @@ export default class AppTray {
       {
         label: 'Check for updates',
         click: () => checkForUpdates(),
-      },
-      separator,
-      {
-        label: 'Donate...',
-        click: donate
       }
     ]
 
