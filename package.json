@@ -191,9 +191,9 @@
     "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
+    "@devmedoo/cerebro-ui": "0.0.19",
     "auto-launch": "^5.0.1",
     "cerebro-tools": "0.1.8",
-    "@devmedoo/cerebro-ui": "0.0.19",
     "electron-debug": "^3.0.1",
     "escape-string-regexp": "1.0.5",
     "fix-path": "2.1.0",
@@ -202,6 +202,7 @@
     "node-machine-id": "^1.1.8",
     "normalize.css": "^7.0.0",
     "postcss": "^6.0.6",
+    "prop-types": "^15.7.2",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-shallow-compare": "^15.6.0",
@@ -217,6 +218,6 @@
     "tar-fs": "1.15.0"
   },
   "devEngines": {
-    "node": ">=8 <12"
+    "node": ">=8 <13"
   }
 }

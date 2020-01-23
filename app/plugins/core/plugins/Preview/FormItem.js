@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Select, Text, Checkbox } from '@devmedoo/cerebro-ui/Form'
 
 const components = {

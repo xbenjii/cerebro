@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { KeyboardNav, KeyboardNavItem, Preload } from '@devmedoo/cerebro-ui'
 import ActionButton from './ActionButton.js'
 import Settings from './Settings'
