@@ -6,7 +6,7 @@ import { flow, filter, map, property } from 'lodash/fp'
 
 const DEFAULT_PLUGINS = [
   process.platform === 'darwin' ? 'cerebro-mac-apps' : 'cerebro-basic-apps',
-  'cerebro-duck-duck-go',
+  'cerebro-google',
   'cerebro-math',
   'cerebro-converter',
   'cerebro-open-web',
