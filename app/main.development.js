@@ -57,7 +57,7 @@ app.on('ready', () => {
     tray.show()
   }
 
-  autoStart.isEnabled().then(enabled => {
+  autoStart.isEnabled().then((enabled) => {
     if (config.get('openAtLogin') !== enabled) {
       autoStart.set(config.get('openAtLogin'))
     }
@@ -65,7 +65,9 @@ app.on('ready', () => {
 
   initAutoUpdater(mainWindow)
 
-  app.dock && app.dock.hide()
+  if (app.dock) {
+    app.dock.hide()
+  }
 })
 
 ipcMain.on('message', (event, payload) => {
@@ -78,7 +80,11 @@ ipcMain.on('updateSettings', (event, key, value) => {
 
   // Show or hide menu bar icon when it is changed in setting
   if (key === 'showInTray') {
-    value ? tray.show() : tray.hide()
+    if (value) {
+      tray.show()
+    } else {
+      tray.hide()
+    }
   }
 
   // Show or hide "development" section in tray menu
@@ -88,7 +94,7 @@ ipcMain.on('updateSettings', (event, key, value) => {
 
   // Enable or disable auto start
   if (key === 'openAtLogin') {
-    autoStart.isEnabled().then(enabled => {
+    autoStart.isEnabled().then((enabled) => {
       if (value !== enabled) {
         autoStart.set(value)
       }
